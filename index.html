@@ -42,7 +42,6 @@
             Powered by DNV GL
         </div>
     </div>
-    <p id="demo"></p>
 
     <script>
         // Set the date we're counting down to
@@ -70,7 +69,9 @@
             // If the count down is over, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("days").innerHTML = "We go live very soon";
+                document.getElementById("days").innerHTML = "";
+                document.getElementById("header").innerHTML = "<a href=\"https://www.dnvgl.com\">www.dnvgl.com</a>";
+                
             }
         }, 1000);
     </script>
