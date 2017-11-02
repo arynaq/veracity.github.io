@@ -83,9 +83,9 @@
       justify-content:center;
       letter-spacing:1px;
 
-      transform:translateY(30px);
-      transition:opacity 2.5s ease-out,
-                  transform 2.5s ease-out;
+      transform:translateY(-30px) scale(3);
+      transition:opacity 3.5s ease-out,
+                  transform 3.5s ease-out;
 
       background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.3) 17%, rgba(0,0,0,0.3) 83%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
       background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -97,7 +97,7 @@
       font-size:32px;
     }
     .counter-finished a{
-      margin:0 0 20px;
+      margin:0;
       font-size:20px;
     }
 
@@ -127,7 +127,7 @@
     body.ready.done-1.done-2.done-3 .counter-finished{
       display:flex;
       opacity:1;
-      transform:translateY(0);
+      transform:translateY(0) scale(1);
     }
   </style>
 </head>
