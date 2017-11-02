@@ -1,81 +1,238 @@
 <!DOCTYPE html>
 <html>
-<title>Veracity Developer</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-    body, h1 {
-        font-family: "Raleway", sans-serif
+
+<head>
+  <title>Veracity Developer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    *{
+      box-sizing:border-box;
     }
 
-    body, html {
-        height: 100%
+    body,
+    html {
+      height: 100%;
+      font-family: "Raleway", sans-serif;
+      color:#fff;
+      margin:0;
+      font-size:16px;
     }
 
-    .bgimg {
-        background-image: url('veracity.jpg');
-        min-height: 100%;
-        background-position: center;
-        background-size: cover;
+    body {
+      background-image: url('https://veracity.github.io/veracity.jpg');
+      min-height: 100%;
+      background-position: center;
+      background-size: cover;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
     }
-    .w3-display-middle{
-        padding:30px 15px;
-        background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.3) 17%, rgba(0,0,0,0.3) 83%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    
+    a{
+      color:inherit;
     }
-</style>
+
+    .header{
+      position:absolute;
+      top:10px;
+      left:10px;
+      margin:0;
+      padding:0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    .counter{
+      font-size:64px;
+      display:flex;
+      text-shadow:2px 2px 5px #000;
+      opacity:0;
+      transition:all 0.5s ease-out;
+      letter-spacing:10px;
+    }
+    .counter span{
+      display:block;
+    }
+    .counter .colon{
+      padding:0 10px;
+    }
+
+    .poweredby{
+      position:absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 18px;
+      transform:translateX(200%);
+      transition:transform 2s ease-out;
+    }
+
+    .counter-finished{
+      display:none;
+      opacity:0;
+
+      text-align:center;
+      width:500px;
+      height:200px;
+
+      flex-direction:column;
+      justify-content:center;
+      letter-spacing:1px;
+
+      transform:translateY(30px);
+      transition:opacity 0.5s ease-out,
+                  transform 0.5s ease-out;
+
+      background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.3) 17%, rgba(0,0,0,0.3) 83%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    }
+    .counter-finished h2{
+      margin:0 0 20px;
+      font-size:32px;
+    }
+    .counter-finished a{
+      margin:0 0 20px;
+      font-size:20px;
+    }
+
+    body.ready .counter{
+      opacity:1;
+      letter-spacing:0;
+    }
+    body.ready .poweredby{
+      transform:translateY(0);
+    }
+
+    body.ready.done-1 .counter{
+      opacity:0;
+      letter-spacing:10px;
+    }
+
+    body.ready.done-1.done-2 .counter{
+      display:none;
+    }
+    body.ready.done-1.done-2 .counter-finished{
+      display:flex;
+    }
+    body.ready.done-1.done-2.done-3 .counter-finished{
+      display:flex;
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+
 <body>
-    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-        <div class="w3-display-topleft w3-padding-large w3-xlarge">
-            Veracity
-        </div>
-        <div class="w3-display-middle">
-            <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>
-            <hr class="w3-border-grey" style="margin:auto;width:40%">
-            <p class="w3-large w3-center" id="days">35 days left</p>
-        </div>
-        <div class="w3-display-bottomleft w3-padding-large">
-            Powered by DNV GL
-        </div>
+  <h1 class="header">Veracity</h1>
+  <div class="counter-container">
+    <div class="counter">
+      <span class="number" id="days_10">0</span>
+      <span class="number" id="days_1">0</span>
+      <span class="colon">:</span>
+      <span class="number" id="hours_10">0</span>
+      <span class="number" id="hours_1">0</span>
+      <span class="colon">:</span>
+      <span class="number" id="minutes_10">0</span>
+      <span class="number" id="minutes_1">0</span>
+      <span class="colon">:</span>
+      <span class="number" id="seconds_10">0</span>
+      <span class="number" id="seconds_1">0</span>
     </div>
+  </div>
+  <div class="counter-finished">
+    <h2>Veracity is live!</h2>
+    <a href="https://veracity.com">Discover the true value of <strong>your</strong> data</a>
+  </div>
+  <div class="poweredby">Powered by DNV GL</div>
 
-    <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Nov 2, 2017 16:00:00").getTime();
+<script>
+(function(){
+  var days10 = document.getElementById('days_10');
+  var days1 = document.getElementById('days_1');
+  var hours10 = document.getElementById('hours_10');
+  var hours1 = document.getElementById('hours_1');
+  var min10 = document.getElementById('minutes_10');
+  var min1 = document.getElementById('minutes_1');
+  var sec10 = document.getElementById('seconds_10');
+  var sec1 = document.getElementById('seconds_1');
 
-        // Update the count down every 1 second
-        var x = setInterval(function () {
+  var deadline = new Date("Nov 2, 2017 16:00:00").getTime();
+  //var deadline = new Date(Date.now() + 3000).getTime();
+  var timeout = null;
 
-            // Get todays date and time
-            var now = new Date().getTime();
+  var pad2 = function(num) {
+    if (num < 10) return '0'+(num+'');
+    return num+'';
+  };
+  var getTimeLeft = function(){
+    // Get todays date and time
+    var now = new Date().getTime();
 
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
+    // Find the distance between now an the count down date
+    var distance = deadline - now;
 
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Time calculations for days, hours, minutes and seconds
+    return {
+      days: pad2(Math.floor(distance / (1000 * 60 * 60 * 24))),
+      hours: pad2(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
+      minutes: pad2(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))),
+      seconds: pad2(Math.floor((distance % (1000 * 60)) / 1000)),
+      distance: distance
+    };
+  };
 
-            // Output the result in an element with id="demo"
-            document.getElementById("days").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
+  var onDone = function(){
+    clearInterval(timeout);
+    document.body.classList.add('done-1');
+    setTimeout(function(){
+      document.body.classList.add('done-2');
+      setTimeout(function(){
+        document.body.classList.add('done-3');
+      }, 100);
+    }, 500);
+  };
 
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "";
-                document.getElementById("header").innerHTML = "<a href=\"https://www.veracity.com\">www.veracity.com</a>";
-                
-            }
-        }, 1000);
-    </script>
+  var countAndSet = function(){
+    var timeLeft = getTimeLeft();
 
+    if (timeLeft.distance <= 0) return timeLeft;
 
+    days10.textContent = timeLeft.days[0];
+    days1.textContent = timeLeft.days[1];
+    hours10.textContent = timeLeft.hours[0];
+    hours1.textContent = timeLeft.hours[1];
+    min10.textContent = timeLeft.minutes[0];
+    min1.textContent = timeLeft.minutes[1];
+    sec10.textContent = timeLeft.seconds[0];
+    sec1.textContent = timeLeft.seconds[1];
+    return timeLeft;
+  };
+
+  var start = function(){
+    timeout = setInterval(function(){
+      var timer = countAndSet();
+      if (timer.distance <= 0){
+        onDone();
+      }
+    }, 1000);
+    setTimeout(function(){
+      var timer = countAndSet();
+      document.body.classList.add('ready');
+      if (timer.distance <= 0){
+        document.body.classList.add('done-1');
+      }
+    }, 500);
+  };
+
+  countAndSet();
+  window.addEventListener('load', start);
+})();
+</script>
 </body>
 </html>
