@@ -52,7 +52,7 @@
       display:flex;
       text-shadow:2px 2px 5px #000;
       opacity:0;
-      transition:all 0.5s ease-out;
+      transition:opacity 0.5s ease-out, letter-spacing 0.5s ease-out, font-size 30s linear;
       letter-spacing:10px;
     }
     .counter span{
@@ -84,8 +84,8 @@
       letter-spacing:1px;
 
       transform:translateY(30px);
-      transition:opacity 0.5s ease-out,
-                  transform 0.5s ease-out;
+      transition:opacity 2.5s ease-out,
+                  transform 2.5s ease-out;
 
       background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.3) 17%, rgba(0,0,0,0.3) 83%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
       background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,0.3) 17%,rgba(0,0,0,0.3) 83%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -107,6 +107,10 @@
     }
     body.ready .poweredby{
       transform:translateY(0);
+    }
+
+    body.almost .counter{
+      font-size:128px;
     }
 
     body.ready.done-1 .counter{
@@ -163,7 +167,6 @@
   var sec1 = document.getElementById('seconds_1');
 
   var deadline = new Date("Nov 2, 2017 16:00:00").getTime();
-  //var deadline = new Date(Date.now() + 3000).getTime();
   var timeout = null;
 
   var pad2 = function(num) {
@@ -211,20 +214,25 @@
     min1.textContent = timeLeft.minutes[1];
     sec10.textContent = timeLeft.seconds[0];
     sec1.textContent = timeLeft.seconds[1];
+
+    if (timeLeft.distance < 30000){
+      document.body.classList.add('almost');
+    }
+
     return timeLeft;
   };
 
   var start = function(){
     timeout = setInterval(function(){
       var timer = countAndSet();
-      if (timer.distance <= 0){
+      if (timer.distance <= 1000){
         onDone();
       }
     }, 1000);
     setTimeout(function(){
       var timer = countAndSet();
       document.body.classList.add('ready');
-      if (timer.distance <= 0){
+      if (timer.distance <= 1000){
         document.body.classList.add('done-1');
       }
     }, 500);
